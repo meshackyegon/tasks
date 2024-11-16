@@ -3,9 +3,25 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+// function connect()
+// {
+//     return mysqli_connect("localhost","root","","tasks");
+// }
 function connect()
 {
-    return mysqli_connect("localhost","root","","tasks");
+    $host = "database-1.cfa0oouaaqg9.us-east-2.rds.amazonaws.com"; 
+    $username = "admin"; 
+    $password = "Meshari&0099"; 
+    $database = "task_manager"; 
+
+    $connection = mysqli_connect($host, $username, $password, $database);
+
+    // Check connection
+    if (!$connection) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    return $connection;
 }
 // function security($name) //handling and sanitizing form data
 // {
